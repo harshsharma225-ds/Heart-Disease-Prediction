@@ -1,35 +1,54 @@
 # ❤️ Heart Disease Prediction
 
-A complete machine learning workflow for predicting the presence of heart disease in patients using clinical and demographic data, built in a single, well-documented Jupyter notebook.
+An end-to-end machine learning project that predicts the likelihood of heart disease from patient clinical data. It includes data cleaning & model training, a FastAPI backend to serve predictions, and a Streamlit frontend for users to interact with the model.
 
-## 📌 Project Overview
+## 📋 Overview
 
-Cardiovascular disease is one of the leading causes of death worldwide. This project uses the classic **UCI Heart Disease dataset** (combining data from Cleveland, Hungary, Switzerland, and VA Long Beach hospitals) to build and compare multiple classification models that predict whether a patient has heart disease based on clinical measurements.
+This project uses the UCI Heart Disease dataset to train and compare multiple classification models, then serves the best-performing one through a REST API with a simple web interface on top.
 
-The notebook covers the entire ML pipeline end to end:
+**Pipeline:**
+Raw Data → Cleaning & Preprocessing → Model Training & Comparison → Best Model Saved
+→ FastAPI Backend (serves predictions) → Streamlit Frontend (user interface)
 
-1. Importing Libraries
-2. Loading & Inspecting Data
-3. Data Cleaning
-4. Exploratory Data Analysis (EDA) & Visualization
-5. Data Preprocessing
-6. Train-Test Split
-7. Model Training
-8. Model Evaluation (with hyperparameter tuning)
-9. Conclusion
+
+## 🚀 Features
+
+- Data cleaning: handles missing values, invalid entries (e.g. cholesterol = 0), and type conversions
+- Preprocessing pipeline: `StandardScaler` for numerical features, `OneHotEncoder` for categorical features
+- Trains and compares 4 models: Logistic Regression, Decision Tree, Random Forest, and KNN
+- Automatically selects the best model based on F1 score
+- REST API (FastAPI) with interactive Swagger docs
+- Web UI (Streamlit) for entering patient details and viewing predictions with confidence scores
 
 ## 🛠️ Tech Stack
 
-- **Language:** Python 3
-- **Data handling:** pandas, numpy
-- **Visualization:** matplotlib, seaborn
-- **Modeling:** scikit-learn (Logistic Regression, Decision Tree, Random Forest, KNN)
-- **Environment:** Jupyter Notebook
+| Layer | Tools |
+|---|---|
+| Data & ML | Python, Pandas, NumPy, Scikit-learn |
+| Model Persistence | Joblib |
+| Backend API | FastAPI, Uvicorn |
+| Frontend | Streamlit |
 
-## 🔍 Workflow Summary
+## 📁 Project Structure
+heart_disease/
+├── heart_disease_prediction.ipynb # Exploratory notebook (EDA + experiments)
+├── requirements.txt
+├── ml/
+│ ├── train.py # Cleans data, trains models, saves best one
+│ ├── heart_disease_uci.csv # Dataset
+│ ├── heart_disease_model.pkl # Saved best model (generated)
+│ ├── preprocessor.pkl # Saved preprocessing pipeline (generated)
+│ ├── model_metadata.json # Feature names & best model info (generated)
+│ └── model_comparison.csv # Metrics for all trained models (generated)
+├── backend/
+│ └── app.py # FastAPI app serving predictions
+└── frontend/
+└── streamlit_app.py # Streamlit UI
 
-- **Cleaning:** Handled missing values (median imputation for numeric, mode for categorical), fixed invalid cholesterol entries, converted the multi-class target into a binary label.
-- **EDA:** Visualized target balance, age distribution, chest pain type vs. disease, correlation heatmap, and more to surface key clinical risk patterns.
-- **Preprocessing:** Built a `ColumnTransformer` + `Pipeline` combining standard scaling for numeric features and one-hot encoding for categorical features.
-- **Modeling:** Trained and compared Logistic Regression, Decision Tree, Random Forest, and KNN.
-- **Evaluation:** Compared models on Accuracy, Precision, Recall, F1-score.
+## 📊 Dataset
+
+The [UCI Heart Disease dataset](https://archive.ics.uci.edu/dataset/45/heart+disease), combining data from multiple hospitals, with 13 clinical features (age, chest pain type, resting blood pressure, cholesterol, ECG results, etc.) used to predict presence of heart disease.
+
+## 📈 Model Performance
+
+Model comparison (Accuracy, Precision, Recall, F1 Score) is generated automatically in `ml/model_comparison.csv` after running `train.py`, with the best model (by F1 score) selected and saved for deployment.
