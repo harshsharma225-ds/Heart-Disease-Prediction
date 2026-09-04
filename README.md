@@ -30,20 +30,20 @@ Raw Data → Cleaning & Preprocessing → Model Training & Comparison → Best M
 | Frontend | Streamlit |
 
 ## 📁 Project Structure
-heart_disease/
-├── heart_disease_prediction.ipynb # Exploratory notebook (EDA + experiments)
-├── requirements.txt
-├── ml/
-│ ├── train.py # Cleans data, trains models, saves best one
-│ ├── heart_disease_uci.csv # Dataset
-│ ├── heart_disease_model.pkl # Saved best model (generated)
-│ ├── preprocessor.pkl # Saved preprocessing pipeline (generated)
-│ ├── model_metadata.json # Feature names & best model info (generated)
-│ └── model_comparison.csv # Metrics for all trained models (generated)
-├── backend/
-│ └── app.py # FastAPI app serving predictions
-└── frontend/
-└── streamlit_app.py # Streamlit UI
+- **heart_disease/** (root folder)
+  - `heart_disease_prediction.ipynb` — Exploratory notebook (EDA + experiments)
+  - `requirements.txt` — Python dependencies
+  - **ml/**
+    - `train.py` — Cleans data, trains models, saves the best one
+    - `heart_disease_uci.csv` — Dataset
+    - `heart_disease_model.pkl` — Saved best model (generated)
+    - `preprocessor.pkl` — Saved preprocessing pipeline (generated)
+    - `model_metadata.json` — Feature names & best model info (generated)
+    - `model_comparison.csv` — Metrics for all trained models (generated)
+  - **backend/**
+    - `app.py` — FastAPI app serving predictions
+  - **frontend/**
+    - `streamlit_app.py` — Streamlit UI
 
 ## 📊 Dataset
 
