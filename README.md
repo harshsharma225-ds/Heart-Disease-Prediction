@@ -7,9 +7,12 @@ An end-to-end machine learning project that predicts the likelihood of heart dis
 This project uses the UCI Heart Disease dataset to train and compare multiple classification models, then serves the best-performing one through a REST API with a simple web interface on top.
 
 **Pipeline:**
-Raw Data → Cleaning & Preprocessing → Model Training & Comparison → Best Model Saved
-→ FastAPI Backend (serves predictions) → Streamlit Frontend (user interface)
-
+- **Raw Data** — heart_disease_uci.csv
+- **Cleaning & Preprocessing** — handle missing values, fix invalid entries, scale/encode features
+- **Model Training & Comparison** — train Logistic Regression, Decision Tree, Random Forest, and KNN
+- **Best Model Saved** — selected automatically based on F1 score
+- **FastAPI Backend** — loads the saved model and serves predictions via a `/predict` endpoint
+- **Streamlit Frontend** — user enters patient details and views the prediction result
 
 ## 🚀 Features
 
